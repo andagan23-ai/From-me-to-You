@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>A Bouquet for Irish</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Caveat:wght@600&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="c" aria-hidden="true"></canvas>
+<div id="msg" aria-hidden="true"></div>
+<button id="hit" type="button" aria-label="Click the bouquet to open it"></button>
+
+<div id="clock" aria-hidden="true">
+  <canvas id="clk"></canvas>
+  <div id="rw"></div>
+</div>
+
+<section id="story" hidden>
+  <canvas id="field" aria-hidden="true"></canvas>
+  <div id="todA" class="tod" aria-hidden="true"></div>
+  <div id="todB" class="tod" aria-hidden="true"></div>
+  <div id="todstars" aria-hidden="true"></div>
+  <div id="night" aria-hidden="true"></div>
+  <div id="cast">
+    <canvas id="bunch" width="64" height="72" aria-label="A bunch of pixel daisies"></canvas>
+    <div class="char girl" id="girl"><img alt="Irish, a pixel-art girl in a black and gold gown and a tiara, waving" src="images/girl.webp"><i class="shadow"></i></div>
+    <div class="char stan" id="stan"><img alt="Stan, a pixel-art boy with blond hair, sunglasses and a dark coat" src="images/stan.webp"><i class="shadow"></i></div>
+    <div class="char g2" id="girl2"><span class="fl"><img alt="Irish, a pixel-art girl in a black and gold gown and a tiara, waving" src="images/girl2.webp"></span><i class="shadow"></i></div>
+    <div class="char s2" id="stan2"><img alt="Stan, a pixel-art boy with blond hair and sunglasses, in knight armor with a blue cape" src="images/stan2.webp"><i class="shadow"></i></div>
+    <div class="char s4" id="stan4"><img alt="Stan, a pixel-art boy with blond hair, sunglasses and a dark coat, hands in his pockets" src="images/stan4.webp"><i class="shadow"></i></div>
+    <div class="char g4" id="girl4"><img alt="Irish, a pixel-art girl in a black and gold gown and a tiara, smiling and holding a bouquet of daisies" src="images/girl4.webp"><i class="shadow"></i></div>
+    <div class="char s3" id="stan3"><span class="fl"><img alt="Stan, a pixel-art boy with blond hair, sunglasses and a dark coat" src="images/stan3.webp"><img class="bq" id="bq3" alt="A bouquet of daisies" src="images/bouquet.webp"></span><i class="shadow"></i></div>
+    <div id="fx" aria-hidden="true"></div>
+  </div>
+  <div id="pet" hidden><img alt="A little pixel cat"></div>
+</section>
+
+<div id="wrap" class="center" hidden>
+  <div id="box"><div id="hd" hidden></div><div id="vs" hidden></div><div id="txt"></div><div id="acts"><button id="btn2" type="button" hidden></button><button id="btn" type="button"></button></div></div>
+</div>
+<div id="wall" hidden>
+  <canvas id="wallc" aria-label="Irish, in her gold gown, swings a hammer and breaks down the stone wall Stan sits on"></canvas>
+  <div id="wallcap"><p id="wallp"></p><button id="wallbtn" type="button">CONTINUE</button></div>
+</div>
+<div id="endbtns"><button id="again" type="button" hidden>REPLAY</button><button id="seeach" class="pbtn alt" type="button" hidden>SEE ACHIEVEMENTS</button></div>
+<div id="scrim"></div>
+<canvas id="fw" aria-hidden="true"></canvas>
+<div id="stamp" hidden role="status"><span>CONTRACT<br>RENEWED</span><span class="row"><svg viewBox="0 0 7 6" shape-rendering="crispEdges" fill="currentColor" aria-hidden="true"><path d="M6 0h1v1h-1z M5 1h1v1h-1z M4 2h1v1h-1z M0 3h1v1h-1z M3 3h1v1h-1z M1 4h1v1h-1z M2 4h1v1h-1z"/></svg>2027</span><img id="stampsig" alt="" hidden></div>
+<div id="cd" hidden aria-live="polite"></div>
+<p id="sign" hidden role="img" aria-label="See you in 2027, Irish. – Stan"><span class="l1"></span><span class="who"><span class="l2"></span></span><span class="sg"><img id="signsig" alt="Irish’s signature"><small>signed, Irish</small></span></p>
+<div id="boot">
+  <div id="bootstars" aria-hidden="true"></div>
+  <div id="bootload">
+    <p class="bl">LOADING 2027<span class="dots"><i>.</i><i>.</i><i>.</i></span></p>
+    <div id="bootbar" aria-hidden="true"></div>
+    <p class="tip">tip: tap things. you never know.</p>
+  </div>
+  <div id="boottitle" hidden>
+    <p class="yr">2027</p>
+    <h1>FROM ME TO YOU</h1>
+    <p class="sub">a new year story</p>
+    <button id="pstart" type="button">PRESS START</button>
+    <p class="cr">© STAN, 2027</p>
+  </div>
+</div>
+<div id="game" hidden>
+  <div id="ghud"><span id="gscore">DAISIES 0</span><i id="gtime"><b></b></i></div>
+</div>
+<div id="candle" hidden>
+  <p id="candlecap">Tap the candle to light it for 2027.</p>
+  <button id="cake" type="button" aria-label="Light the candle">
+    <i id="glow"></i>
+    <svg viewBox="0 0 24 26" shape-rendering="crispEdges" aria-hidden="true">
+      <path fill="#7db4ff" d="M11 5h2v5h-2z"/><path fill="#fff4e0" d="M11 7h2v1h-2z"/>
+      <path fill="#fff4e0" d="M6 10h12v2h-12z M8 12h1v2h-1z M13 12h1v1h-1z M16 12h1v2h-1z"/>
+      <path fill="#ffd1e6" d="M6 12h12v4h-12z"/><path fill="#fff4e0" d="M8 12h1v2h-1z M13 12h1v1h-1z M16 12h1v2h-1z"/>
+      <path fill="#ff5d8f" d="M8 9h2v1h-2z M14 9h2v1h-2z"/>
+      <path fill="#fff4e0" d="M3 16h18v2h-18z"/><path fill="#ff8fc0" d="M3 18h18v5h-18z"/><path fill="#ff5d8f" d="M3 21h18v2h-18z"/>
+      <path fill="#fff4e0" d="M4 18h1v2h-1z M9 18h1v1h-1z M14 18h1v2h-1z M19 18h1v1h-1z"/>
+      <path fill="#fff4e0" d="M1 23h22v2h-22z"/><path fill="#cfae83" d="M3 25h18v1h-18z"/>
+      <g class="flame">
+        <g class="fa"><path fill="#ff8a2c" d="M11 1h2v1h-2z M10 2h4v2h-4z M11 4h2v1h-2z"/><path fill="#ffe16b" d="M11 2h2v2h-2z"/></g>
+        <g class="fb"><path fill="#ff8a2c" d="M12 0h1v1h-1z M11 1h2v1h-2z M10 2h4v2h-4z M11 4h2v1h-2z"/><path fill="#ffe16b" d="M11 2h2v2h-2z"/></g>
+      </g>
+    </svg>
+  </button>
+  <button id="candlego" class="pbtn" type="button" hidden>CONTINUE</button>
+</div>
+<div id="contract" hidden>
+  <div id="paper" role="dialog" aria-label="Contract of renewal">
+    <h2>CONTRACT OF RENEWAL</h2>
+    <p class="who">Stan &amp; Irish</p>
+    <p>Term: one more year, 2027.</p>
+    <p>Renewed for another year of being each other’s safe space.</p>
+    <div id="sigwrap"><canvas id="sig" aria-label="Signature area"></canvas><span class="sh">sign here</span></div>
+    <div class="row"><button id="sigclear" class="pbtn alt" type="button">CLEAR</button><button id="sigok" class="pbtn" type="button" disabled>SIGN</button></div>
+  </div>
+</div>
+<div id="wish" hidden>
+  <div id="wishbox" role="dialog" aria-label="Make a wish">
+    <h2>MAKE A WISH FOR 2027</h2>
+    <div class="wf"><label for="wishin">YOUR WISH</label><input id="wishin" type="text" maxlength="70" placeholder="type your wish…" autocomplete="off" enterkeyhint="next"></div>
+    <div class="wf"><label for="resin">YOUR NEW YEAR’S RESOLUTION</label><input id="resin" type="text" maxlength="70" placeholder="type your resolution…" autocomplete="off" enterkeyhint="send"></div>
+    <div class="row"><button id="wishskip" class="pbtn alt" type="button">SKIP</button><button id="wishgo" class="pbtn" type="button">SEND IT UP</button></div>
+  </div>
+</div>
+<div id="lantern" hidden aria-hidden="true">
+  <svg viewBox="0 0 11 14" shape-rendering="crispEdges"><path fill="#ff5d8f" d="M3 0h5v1h-5z M3 11h5v1h-5z M5 12h1v2h-1z"/><path fill="#f2b705" d="M1 1h9v10h-9z"/><path fill="#ffd93b" d="M3 1h5v10h-5z"/><path fill="#fff3a6" d="M4 3h3v5h-3z"/><path fill="#ff9a3c" d="M1 4h9v1h-9z M1 8h9v1h-9z"/></svg>
+  <p id="lanttxt"></p>
+</div>
+<button id="secret" type="button" hidden aria-label="A hidden heart"><svg viewBox="0 0 7 6" shape-rendering="crispEdges" aria-hidden="true"><path fill="#ff5d8f" d="M1 0h2v1h-2z M4 0h2v1h-2z M0 1h7v2h-7z M1 3h5v1h-5z M2 4h3v1h-3z M3 5h1v1h-1z"/><path fill="#ffd1e6" d="M1 1h1v1h-1z"/></svg></button>
+<div id="pop" hidden><img src="images/daisy-bouquet.webp" alt="A bouquet of daisies"><p>A bouquet for you, always</p></div>
+<div id="unlock" hidden>
+  <div id="ub" role="dialog" aria-label="Achievements">
+    <p class="k">YOU UNLOCKED</p>
+    <p class="big">2027</p>
+    <ul id="ul"></ul>
+    <p id="ucount"></p>
+    <p id="uhint"></p>
+    <div class="ubtns"><button id="ulast" class="pbtn" type="button">SHOW LAST ACHIEVEMENT</button><button id="uok" class="pbtn alt" type="button">CLOSE</button></div>
+  </div>
+</div>
+<div id="memories" hidden>
+  <h2>OUR YEAR</h2>
+  <p class="msub">a few moments from this year. tap a photo to see it bigger.</p>
+  <div id="mframes">
+    <button class="mf" type="button" style="--r:-2.4deg;--d:.15s"><img src="images/memory1.jpg" alt="Four friends on a bus, smiling and making peace signs"></button>
+    <button class="mf" type="button" style="--r:1.8deg;--d:.75s"><img src="images/memory2.jpg" alt="A group of friends smiling together on a street"></button>
+    <button class="mf" type="button" style="--r:-1.2deg;--d:1.35s"><img src="images/memory3.jpg" alt="A blurry candid moment in a classroom"></button>
+  </div>
+  <button id="memgo" class="pbtn" type="button">CONTINUE</button>
+</div>
+<div id="lb" hidden><img alt=""></div>
+<div id="match" hidden>
+  <h2>MEMORY MATCH</h2>
+  <p id="mmoves">MOVES 0</p>
+  <div id="mgrid"></div>
+</div>
+<canvas id="petals" aria-hidden="true"></canvas>
+<div id="great" hidden>
+  <div id="gb" role="dialog" aria-label="The greatest achievement">
+    <svg viewBox="0 0 9 9" shape-rendering="crispEdges" aria-hidden="true"><path fill="#ffd93b" d="M2 0h5v1h-5z M2 1h5v3h-5z M3 4h3v1h-3z M4 5h1v2h-1z M2 7h5v1h-5z M0 1h1v2h-1z M1 3h1v1h-1z M8 1h1v2h-1z M7 3h1v1h-1z"/><path fill="#fff3a6" d="M3 1h1v2h-1z"/><path fill="#ff9a3c" d="M2 8h5v1h-5z"/></svg>
+    <p class="k">THE GREATEST ACHIEVEMENT</p>
+    <p id="greatp">The greatest achievement you’ve made this year is surviving and helping others who are struggling with their own problems, even when you have your own. Continue being yourself! Once again, Happy New Year, may your wishes come true.</p>
+    <button id="greatok" class="pbtn" type="button">CLOSE</button>
+  </div>
+</div>
+<div id="ach" aria-live="polite"></div>
+<div id="fx2" aria-hidden="true"></div>
+<div id="fade"></div>
+<button id="mute" type="button" hidden aria-label="Mute music">
+  <svg viewBox="0 0 10 10" shape-rendering="crispEdges" aria-hidden="true" fill="currentColor">
+    <path d="M1 4h2l2-2v6l-2-2h-2z"/>
+    <path class="wv" d="M6 3h1v4h-1z M8 2h1v6h-1z"/>
+    <path class="x" d="M6 3h1v1h-1z M8 3h1v1h-1z M7 4h1v1h-1z M6 5h1v1h-1z M8 5h1v1h-1z"/>
+  </svg>
+</button>
+<script src="script.js"></script>
+</body>
+</html>
